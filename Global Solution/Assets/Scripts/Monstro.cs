@@ -1,23 +1,30 @@
+using System.Collections;
 using UnityEngine;
 
 public class Monstro : MonoBehaviour
 {
     
     [SerializeField] private Transform Alvo, Eu;
+    [SerializeField] private Player Nimo;
+    //[SerializeField] private Espadinha Espada;
     private int Velocidade = 4;
+    [SerializeField] private int Vida = 100;
+
     void Start()
     {
         
         Alvo = GameObject.FindWithTag("Player").GetComponent<Transform>();
         Eu = GameObject.FindWithTag("Monstro").GetComponent<Transform>();
+        Nimo = GameObject.FindWithTag("Player").GetComponent<Player>();
+        //Espada = GameObject.FindWithTag("Espadinha").GetComponent<Espadinha>();
 
     }
 
-    
     void Update()
     {
         
         Seguir();
+        SistemadeVida();
 
     }
 
@@ -53,4 +60,38 @@ public class Monstro : MonoBehaviour
         }
 
     }
+
+    void OnCollisionEnter2D(Collision2D Col)
+    {
+        
+        if(Col.gameObject.tag == "Player")
+        {
+            
+            print("Toquei Nimo");
+            Nimo.Vida -= 10;
+
+        }
+
+        if(Col.gameObject.tag == "Espadinha")
+        {
+            
+            print("Toquei Espada");
+            Vida -= 25;
+
+        }
+
+    }
+
+    public void SistemadeVida()
+    {
+        
+        if(Vida <= 0)
+        {
+            
+            Destroy(gameObject);            
+            
+        }
+
+    }
+
 }

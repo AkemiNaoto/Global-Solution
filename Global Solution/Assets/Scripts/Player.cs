@@ -8,14 +8,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D Rig;
     [SerializeField] private Tronco Madeira;
     [SerializeField] private MesaDeTrabalho Minecraft;
+    //[SerializeField] private Monstro Monstro;
     public bool Interagiu = false;
     public int QuantidadedeMadeiras;
     public int QuantidadeEspadas;
+    //[SerializeField] private float Tempo;
     private GameObject Espadinha;
     [SerializeField] private Transform Nimo;
     private float Velocidade = 7.0f;
     public bool Espada = false;
     public GameObject EspadaDeMadeira;
+    public int Vida = 100;
 
     void Start()
     {
@@ -31,6 +34,14 @@ public class Player : MonoBehaviour
         PegarMadeira();
         Interagir();
         Atacar();
+        //Horario();
+
+        if(Vida == 0)
+        {
+            
+            Destroy(gameObject);
+
+        }
 
     }
 
@@ -121,5 +132,17 @@ public class Player : MonoBehaviour
 
         
     }
+
+    /*IEnumerator Aparecer()
+    {
+        
+        float X = Random.Range(-78.1f, 70.2f);
+        float Y = Random.Range(-36.1f, 28.8f);
+        Vector2 Position = new Vector2(X,Y);
+        Instantiate(Monstro, Position, Quaternion.identity);
+
+        yield return new WaitForSeconds(10.0f);
+
+    }*/
 
 }

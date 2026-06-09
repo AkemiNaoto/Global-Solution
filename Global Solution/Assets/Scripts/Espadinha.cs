@@ -4,6 +4,7 @@ public class Espadinha : MonoBehaviour
 {
     
    Player Nimo;
+   public int Dano = 25;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class Espadinha : MonoBehaviour
     void Update()
     {
 
-        Invoke("Sumir", 1.5f);
+        Invoke("Sumir", 0.5f);
 
     }
 
